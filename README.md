@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+안유림
+
+## 프로젝트 실행 방법
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
