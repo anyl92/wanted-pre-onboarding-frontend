@@ -4,7 +4,8 @@ import useTodo from "../hooks/useTodo";
 
 const Todo = () => {
   const { redirectNotLoginUser } = useUser();
-  const { setTodosData, todos } = useTodo();
+  const { setTodosData, todos, handleAddTodoClick, newTodo, setNewTodo } =
+    useTodo();
 
   useEffect(() => {
     redirectNotLoginUser();
@@ -16,6 +17,16 @@ const Todo = () => {
   return (
     <div>
       Todo Page
+      <input
+        data-testid="new-todo-input"
+        value={newTodo}
+        onChange={(e) => {
+          setNewTodo(e.target.value);
+        }}
+      />
+      <button data-testid="new-todo-add-button" onClick={handleAddTodoClick}>
+        추가
+      </button>
       <li>
         <label>
           <input type="checkbox" />
