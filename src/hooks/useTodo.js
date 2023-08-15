@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { getTodos, createTodo, updateTodo } from "../utils/api/todo";
+import {
+  getTodos,
+  createTodo,
+  updateTodo,
+  deleteTodo,
+} from "../utils/api/todo";
 
 const useTodo = () => {
   const [todos, setTodos] = useState([]);
@@ -38,6 +43,14 @@ const useTodo = () => {
     });
   };
 
+  const handleDeleteTodoClick = (id) => {
+    deleteTodo(id).then((res) => {
+      if (res.status !== 204) {
+        alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+      }
+    });
+  };
+
   return {
     todos,
     setTodosData,
@@ -45,6 +58,7 @@ const useTodo = () => {
     newTodo,
     setNewTodo,
     handleIsCompleteChange,
+    handleDeleteTodoClick,
   };
 };
 

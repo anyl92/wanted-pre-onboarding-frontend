@@ -11,6 +11,7 @@ const Todo = () => {
     newTodo,
     setNewTodo,
     handleIsCompleteChange,
+    handleDeleteTodoClick,
   } = useTodo();
 
   useEffect(() => {
@@ -44,7 +45,12 @@ const Todo = () => {
             </label>
 
             <button data-testid="modify-button">수정</button>
-            <button data-testid="delete-button">삭제</button>
+            <button
+              data-testid="delete-button"
+              onClick={() => handleDeleteTodoClick(todo.id)}
+            >
+              삭제
+            </button>
           </li>
         ))}
     </div>

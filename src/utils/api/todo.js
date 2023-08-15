@@ -26,7 +26,7 @@ export const updateTodo = async (id, body) => {
 
 export const deleteTodo = async (id) => {
   try {
-    return await instance.delete(`/todos${id}`);
+    return await instance.delete(`/todos/${id}`);
   } catch (err) {
     throw err;
   }
