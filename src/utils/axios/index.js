@@ -10,7 +10,7 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
-    return Promise.reject(error);
+    return error;
   }
 );
 
@@ -19,7 +19,7 @@ instance.interceptors.response.use(
     return response;
   },
   function (error) {
-    return Promise.reject(error);
+    return error;
   }
 );
 

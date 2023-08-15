@@ -1,39 +1,14 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { postSignup } from "../../utils/api/api";
+import useUser from "../../hooks/user/useUser";
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [validEmail, setValidEmail] = useState(false);
-  const [password, setPassword] = useState("");
-  const [validPassword, setValidPassword] = useState(false);
-
-  const navigate = useNavigate();
-
-  const handleChangeEmail = (e) => {
-    const nextText = e.target.value;
-    const re = /@/g;
-    setValidEmail(re.test(nextText));
-    setEmail(nextText);
-  };
-
-  const handleChangePassword = (e) => {
-    const nextText = e.target.value;
-    setValidPassword(nextText.length >= 8);
-    setPassword(nextText);
-  };
-
-  const handleClickSignup = () => {
-    if (validEmail && validPassword) {
-      postSignup({ email: email, password: password }).then((res) => {
-        if (res.status === 201) {
-          navigate("/signin");
-        } else {
-          alert("에러 발생, 고객센터로 문의 부탁드립니다.");
-        }
-      });
-    }
-  };
+  const {
+    email,
+    password,
+    handleChangeEmail,
+    handleChangePassword,
+    checkAllValid,
+    handleClickSignup,
+  } = useUser();
 
   return (
     <div>
@@ -51,7 +26,7 @@ const Signup = () => {
       <button
         data-testid="signup-button"
         onClick={handleClickSignup}
-        disabled={!(validEmail && validPassword)}
+        disabled={!checkAllValid}
       >
         회원가입
       </button>
