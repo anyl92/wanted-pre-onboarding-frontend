@@ -9,8 +9,9 @@ import {
 const useTodo = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const [editTodo, setEditTodo] = useState({});
 
-  const setTodosData = () => {
+  const handleGetTodos = () => {
     getTodos().then((res) => {
       if (res.status === 200) {
         setTodos(res.data);
@@ -20,15 +21,16 @@ const useTodo = () => {
     });
   };
 
-  const handleAddTodoClick = () => {
+  const handleAddTodo = async () => {
     const body = {
       todo: newTodo,
     };
-    createTodo(body).then((res) => {
+    await createTodo(body).then((res) => {
       if (res.status !== 201) {
         alert("에러 발생, 고객센터로 문의 부탁드립니다.");
       }
     });
+    handleGetTodos();
   };
 
   const handleIsCompleteChange = (e, todo) => {
@@ -36,29 +38,64 @@ const useTodo = () => {
       todo: todo.todo,
       isCompleted: e.target.checked,
     };
-    updateTodo(todo.id, body).then((res) => {
+    handleUpdateTodo(todo.id, body);
+  };
+
+  const handleUpdateTodo = async (id, body) => {
+    await updateTodo(id, body).then((res) => {
       if (res.status !== 200) {
         alert("에러 발생, 고객센터로 문의 부탁드립니다.");
       }
     });
+    handleGetTodos();
   };
 
-  const handleDeleteTodoClick = (id) => {
-    deleteTodo(id).then((res) => {
+  const handleEditTodoChange = (e, todo) => {
+    setEditTodo({
+      id: todo.id,
+      todo: e.target.value,
+      isCompleted: todo.isCompleted,
+    });
+  };
+
+  const handleDeleteTodo = async (id) => {
+    await deleteTodo(id).then((res) => {
       if (res.status !== 204) {
         alert("에러 발생, 고객센터로 문의 부탁드립니다.");
       }
+      return true;
     });
+    handleGetTodos();
+  };
+
+  const handleEditTodoBtnsClick = (id, text) => {
+    switch (text) {
+      case "수정":
+        setEditTodo({ id: id });
+        break;
+      case "취소":
+        setEditTodo({});
+        break;
+      case "제출":
+        handleUpdateTodo(id, editTodo);
+        setEditTodo({ id: undefined });
+        break;
+      default:
+        break;
+    }
   };
 
   return {
     todos,
-    setTodosData,
-    handleAddTodoClick,
+    handleGetTodos,
+    handleAddTodo,
     newTodo,
     setNewTodo,
     handleIsCompleteChange,
-    handleDeleteTodoClick,
+    handleDeleteTodo,
+    editTodo,
+    handleEditTodoBtnsClick,
+    handleEditTodoChange,
   };
 };
 
