@@ -18,7 +18,6 @@ const useTodo = () => {
   const handleAddTodoClick = () => {
     const body = {
       todo: newTodo,
-      isCompleted: false,
     };
     createTodo(body).then((res) => {
       if (res.status !== 201) {

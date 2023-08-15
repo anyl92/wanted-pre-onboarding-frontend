@@ -12,8 +12,6 @@ const Todo = () => {
     setTodosData();
   }, []);
 
-  console.log(todos);
-
   return (
     <div>
       Todo Page
@@ -27,18 +25,15 @@ const Todo = () => {
       <button data-testid="new-todo-add-button" onClick={handleAddTodoClick}>
         추가
       </button>
-      <li>
-        <label>
-          <input type="checkbox" />
-          <span>TODO 1</span>
-        </label>
-      </li>
-      <li>
-        <label>
-          <input type="checkbox" />
-          <span>TODO 2</span>
-        </label>
-      </li>
+      {todos &&
+        todos.map((todo) => (
+          <li key={todo.id}>
+            <label>
+              <input type="checkbox" defaultChecked={todo.isCompleted} />
+              <span>{todo.todo}</span>
+            </label>
+          </li>
+        ))}
     </div>
   );
 };
