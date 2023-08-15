@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { postSignup } from "../../utils/api/api";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
   const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChangeEmail = (e) => {
     const nextText = e.target.value;
@@ -21,7 +25,13 @@ const Signup = () => {
 
   const handleClickSignup = () => {
     if (validEmail && validPassword) {
-      // TODO:
+      postSignup({ email: email, password: password }).then((res) => {
+        if (res.status === 201) {
+          navigate("/signin");
+        } else {
+          alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+        }
+      });
     }
   };
 
