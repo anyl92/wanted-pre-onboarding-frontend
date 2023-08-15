@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getTodos, createTodo } from "../utils/api/todo";
+import { getTodos, createTodo, updateTodo } from "../utils/api/todo";
 
 const useTodo = () => {
   const [todos, setTodos] = useState([]);
@@ -26,12 +26,25 @@ const useTodo = () => {
     });
   };
 
+  const handleIsCompleteChange = (e, todo) => {
+    const body = {
+      todo: todo.todo,
+      isCompleted: e.target.checked,
+    };
+    updateTodo(todo.id, body).then((res) => {
+      if (res.status !== 200) {
+        alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+      }
+    });
+  };
+
   return {
     todos,
     setTodosData,
     handleAddTodoClick,
     newTodo,
     setNewTodo,
+    handleIsCompleteChange,
   };
 };
 

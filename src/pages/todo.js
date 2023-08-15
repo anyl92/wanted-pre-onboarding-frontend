@@ -4,8 +4,14 @@ import useTodo from "../hooks/useTodo";
 
 const Todo = () => {
   const { redirectNotLoginUser } = useUser();
-  const { setTodosData, todos, handleAddTodoClick, newTodo, setNewTodo } =
-    useTodo();
+  const {
+    setTodosData,
+    todos,
+    handleAddTodoClick,
+    newTodo,
+    setNewTodo,
+    handleIsCompleteChange,
+  } = useTodo();
 
   useEffect(() => {
     redirectNotLoginUser();
@@ -29,9 +35,16 @@ const Todo = () => {
         todos.map((todo) => (
           <li key={todo.id}>
             <label>
-              <input type="checkbox" defaultChecked={todo.isCompleted} />
+              <input
+                type="checkbox"
+                defaultChecked={todo.isCompleted}
+                onChange={(e) => handleIsCompleteChange(e, todo)}
+              />
               <span>{todo.todo}</span>
             </label>
+
+            <button data-testid="modify-button">수정</button>
+            <button data-testid="delete-button">삭제</button>
           </li>
         ))}
     </div>
