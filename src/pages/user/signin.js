@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useUser from "../../hooks/user/useUser";
 
 const Signin = () => {
@@ -8,7 +9,12 @@ const Signin = () => {
     handleChangePassword,
     checkAllValid,
     handleClickSignin,
+    redirectAlreadyLoginUser,
   } = useUser();
+
+  useEffect(() => {
+    redirectAlreadyLoginUser();
+  }, []);
 
   return (
     <div>

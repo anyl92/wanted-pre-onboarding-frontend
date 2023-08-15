@@ -59,6 +59,17 @@ const useUser = () => {
     }
   };
 
+  const redirectAlreadyLoginUser = () => {
+    if (localStorage.getItem("user_token")) {
+      navigate("/todo");
+    }
+  };
+  const redirectNotLoginUser = () => {
+    if (!localStorage.getItem("user_token")) {
+      navigate("/signin");
+    }
+  };
+
   return {
     email,
     validEmail,
@@ -68,6 +79,8 @@ const useUser = () => {
     checkAllValid,
     handleClickSignup,
     handleClickSignin,
+    redirectAlreadyLoginUser,
+    redirectNotLoginUser,
   };
 };
 
