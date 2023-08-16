@@ -21,11 +21,13 @@ const Signin = () => {
       Sign In Page
       <input
         data-testid="email-input"
+        type="text"
         onChange={handleChangeEmail}
         value={email}
       />
       <input
         data-testid="password-input"
+        type="password"
         onChange={handleChangePassword}
         value={password}
       />
