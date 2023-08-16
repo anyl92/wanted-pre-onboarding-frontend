@@ -16,7 +16,7 @@ const useTodo = () => {
       if (res.status === 200) {
         setTodos(res.data);
       } else {
-        alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+        alert("TODO 조회 에러 발생, 고객센터로 문의 부탁드립니다.");
       }
     });
   };
@@ -27,7 +27,7 @@ const useTodo = () => {
     };
     await createTodo(body).then((res) => {
       if (res.status !== 201) {
-        alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+        alert("TODO 추가 에러 발생, 고객센터로 문의 부탁드립니다.");
       }
     });
     handleGetTodos();
@@ -44,7 +44,7 @@ const useTodo = () => {
   const handleUpdateTodo = async (id, body) => {
     await updateTodo(id, body).then((res) => {
       if (res.status !== 200) {
-        alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+        alert("TODO 수정 에러 발생, 고객센터로 문의 부탁드립니다.");
       }
     });
     handleGetTodos();
@@ -61,7 +61,7 @@ const useTodo = () => {
   const handleDeleteTodo = async (id) => {
     await deleteTodo(id).then((res) => {
       if (res.status !== 204) {
-        alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+        alert("TODO 삭제 에러 발생, 고객센터로 문의 부탁드립니다.");
       }
       return true;
     });

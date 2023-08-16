@@ -36,7 +36,7 @@ const useUser = () => {
         if (res.status === 201) {
           navigate("/signin");
         } else {
-          alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+          alert("회원가입 에러 발생, 고객센터로 문의 부탁드립니다.");
         }
       });
     }
@@ -53,7 +53,7 @@ const useUser = () => {
           localStorage.setItem("user_token", res.data.access_token);
           navigate("/todo");
         } else {
-          alert("에러 발생, 고객센터로 문의 부탁드립니다.");
+          alert("로그인 에러 발생, 고객센터로 문의 부탁드립니다.");
         }
       });
     }
