@@ -55,6 +55,7 @@ const useTodo = () => {
       id: todo.id,
       todo: e.target.value,
       isCompleted: todo.isCompleted,
+      opened: true,
     });
   };
 
@@ -71,14 +72,14 @@ const useTodo = () => {
   const handleEditTodoBtnsClick = (id, text) => {
     switch (text) {
       case "수정":
-        setEditTodo({ id: id });
-        break;
-      case "취소":
-        setEditTodo({});
+        setEditTodo({ id: id, opened: true });
         break;
       case "제출":
         handleUpdateTodo(id, editTodo);
-        setEditTodo({ id: undefined });
+        setEditTodo({ id: undefined, opened: false });
+        break;
+      case "취소":
+        setEditTodo((prev) => ({ ...prev, opened: false }));
         break;
       default:
         break;
