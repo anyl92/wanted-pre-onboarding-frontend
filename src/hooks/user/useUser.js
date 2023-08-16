@@ -67,6 +67,7 @@ const useUser = () => {
   const redirectNotLoginUser = () => {
     if (!localStorage.getItem("user_token")) {
       navigate("/signin");
+      return true;
     }
   };
 

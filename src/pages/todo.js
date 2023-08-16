@@ -18,7 +18,7 @@ const Todo = () => {
   } = useTodo();
 
   useEffect(() => {
-    redirectNotLoginUser();
+    if (redirectNotLoginUser()) return;
     handleGetTodos();
   }, []);
 
