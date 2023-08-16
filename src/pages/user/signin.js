@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import useUser from "../../hooks/user/useUser";
+import "../../styles/user.css";
 
 const Signin = () => {
   const {
     email,
     password,
-    handleChangeEmail,
-    handleChangePassword,
+    handleEmailChange,
+    handlePasswordChange,
     checkAllValid,
-    handleClickSignin,
+    handleSigninClick,
     redirectAlreadyLoginUser,
+    handleSigninEnter,
   } = useUser();
 
   useEffect(() => {
@@ -18,22 +20,30 @@ const Signin = () => {
 
   return (
     <div>
-      Sign In Page
-      <input
-        data-testid="email-input"
-        type="text"
-        onChange={handleChangeEmail}
-        value={email}
-      />
-      <input
-        data-testid="password-input"
-        type="password"
-        onChange={handleChangePassword}
-        value={password}
-      />
+      <h2>로그인</h2>
+      <div className="input-box">
+        <span>이메일: </span>
+        <input
+          data-testid="email-input"
+          type="text"
+          onChange={handleEmailChange}
+          onKeyUp={handleSigninEnter}
+          value={email}
+        />
+      </div>
+      <div className="input-box">
+        <span>비밀번호: </span>
+        <input
+          data-testid="password-input"
+          type="password"
+          onChange={handlePasswordChange}
+          onKeyUp={handleSigninEnter}
+          value={password}
+        />
+      </div>
       <button
         data-testid="signin-button"
-        onClick={handleClickSignin}
+        onClick={handleSigninClick}
         disabled={!checkAllValid}
       >
         로그인
