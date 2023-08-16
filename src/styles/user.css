@@ -1,0 +1,6 @@
+.input-box {
+  display: flex;
+  justify-content: space-between;
+  width: 210px;
+  margin: auto;
+}
