@@ -52,6 +52,7 @@ const Todo = () => {
                 <input
                   data-testid="modify-input"
                   onChange={(e) => handleEditTodoChange(e, todo)}
+                  onBlur={(e) => handleEditTodoBtnsClick(todo.id, "취소")}
                 />
                 <button
                   data-testid="submit-button"
