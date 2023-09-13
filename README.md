@@ -1,20 +1,27 @@
-안유림
+안녕하세요. FE 개발자 안유림 입니다.
+
+## 프로젝트 개요
+
+Todo-List
+
+- signup / login (LocalStorage)
+- todo list CRUD
 
 ## 프로젝트 실행 방법
 
-This project was [Create React App](https://github.com/facebook/create-react-app).
-In the project directory, you can run:
+이 프로젝트는 Create React App + TypeScript 로 만들어 졌습니다.
 
-```
+```shell
 npm install
 npm run start
 ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+다음 명령어를 입력 시 development mode 가 실행됩니다.
+
+http://localhost:3000 에서 확인하실 수 있습니다.
 
 ## 배포 링크
 
-https://wanted-pre-onboarding-frontend-jxik.vercel.app/
+[https://wanted-pre-onboarding-frontend-jxik.vercel.app/](https://wanted-pre-onboarding-frontend-jxik.vercel.app/)
 
 감사합니다.
